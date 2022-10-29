@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Box } from './Box/Box';
 import { nanoid } from 'nanoid';
 import { AddForm } from './AddForm/AddForm';
@@ -17,8 +17,17 @@ const savedData = JSON.parse(localStorage.getItem('phonebook'));
 function App() {
   const [filter, setFilter] = useState('');
   const [contacts, setContacts] = useState(savedData ? [...savedData] : startData);
+  const isFirstRender = useRef(true);
+
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      console.log('useEffect при старте приложения ' + Date.now());
+      isFirstRender.current = false;
+      return;
+    }
+    // надо сделать отключение при первом запуске 
+    console.log('useEffect при апдейтах ' + Date.now());
     localStorage.setItem('phonebook', JSON.stringify(contacts));
   }, [contacts]);
 
