@@ -15,6 +15,7 @@ export function ContactList({ contacts, deleteContact }) {
               type="button"
               className={css.delButton}
               onClick={() => deleteContact(id)}
+              aria-label="Delete contact"
             >
               <MdDeleteForever className={css.icon} />
             </button>

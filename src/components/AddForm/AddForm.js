@@ -66,7 +66,11 @@ export function AddForm({ onSubmit }) {
             </Box>
           </Box>
 
-          <button type="submit" className={css.addButton}>
+          <button
+            type="submit"
+            className={css.addButton}
+            aria-label="Add contact"
+          >
             <MdOutlineDataSaverOn size="40" fill="currentColor" />
           </button>
         </Box>

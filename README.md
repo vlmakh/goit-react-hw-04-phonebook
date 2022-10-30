@@ -12,4 +12,4 @@ Used libraries:
 - nanoid;
 - prop-types.
 
-Added using localStorage
+LocalStorage is used to save current data
