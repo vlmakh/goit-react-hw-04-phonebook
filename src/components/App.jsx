@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { AddForm } from './AddForm/AddForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import { Notification } from 'components/Notification/Notification';
 
 const startData = [
   { id: nanoid(4), name: 'Arnold Schwarzenegger', number: '5558801' },
@@ -62,7 +63,11 @@ function App() {
       <Box p={3} mt={2} border="1px solid #212121" borderRadius={3}>
         <h2>Contacts</h2>
 
-        <Filter value={filter} onChange={filterChange} />
+        {filteredContacts.length > 0 || filter ? (
+          <Filter value={filter} onChange={filterChange} />
+        ) : (
+          <Notification msg="No contacts added" />
+        )}
 
         <ContactList
           contacts={filteredContacts}
