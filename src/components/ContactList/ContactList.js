@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import css from './ContactList.module.css';
-import { MdDeleteForever } from 'react-icons/md';
+import { ContactListItem } from 'components/ContactListItem/ContactListItem';
 
 export function ContactList({ contacts, deleteContact }) {
   return (
@@ -8,30 +8,19 @@ export function ContactList({ contacts, deleteContact }) {
       {contacts
         .sort((a, b) => a.name.localeCompare(b.name))
         .map(({ id, name, number }) => (
-          <li key={id} className={css.contactItem}>
-            <span className={css.contactName}>{name}</span>
-            <span className={css.contactNumber}>{number}</span>
-            <button
-              type="button"
-              className={css.delButton}
-              onClick={() => deleteContact(id)}
-              aria-label="Delete contact"
-            >
-              <MdDeleteForever className={css.icon} />
-            </button>
-          </li>
+          <ContactListItem
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            deleteContact={deleteContact}
+          />
         ))}
     </ul>
   );
 }
 
 ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.string,
-    })
-  ),
-  deleteContact: PropTypes.func,
+  contacts: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  deleteContact: PropTypes.func.isRequired,
 };
